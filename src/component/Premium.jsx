@@ -1,20 +1,24 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 
 const Premium = () => {
-      const [isUserPremium, setIsUserPremium] = useState(false);
-  const handleBuyClick = async (type) => {
-    const verifyPremiumUser = async () => {
-      const res = await axios.get(BASE_URL + "/premium/verify", {
-        withCredentials: true,
-      });
+  const [isUserPremium, setIsUserPremium] = useState(false);
+  useEffect(() => {
+    verifyPremiumUser();
+  }, []);
 
-      if (res.data.isPremium) {
-        setIsUserPremium(true);
-      }
-    };
+  const verifyPremiumUser = async () => {
+    const res = await axios.get(BASE_URL + "/premium/verify", {
+      withCredentials: true,
+    });
+
+    if (res.data.isPremium) {
+      setIsUserPremium(true);
+    }
+  };
+
+  const handleBuyClick = async (type) => {
     const order = await axios.post(
       BASE_URL + "/payment/create",
       {
@@ -60,7 +64,7 @@ const Premium = () => {
             <li> - 3 months</li>
           </ul>
           <button
-            onClick={() => handleBuyClick("silver")}
+            onClick={() => handleBuyClick("gold")}
             className="btn btn-secondary"
           >
             Buy Silver
