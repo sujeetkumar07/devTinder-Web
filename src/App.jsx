@@ -11,6 +11,7 @@ import appStore from "./utils/appStore";
 import Feed from "./component/Feed";
 import Connections from "./component/Connections";
 import Requests from "./component/Requests";
+import Premium from "./component/Premium";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/connections" element={<Connections />} />
              <Route path="/requests" element={<Requests />} />
+             <Route path="/premium" element={<Premium />} /> 
           </Route>
         </Routes>
       </BrowserRouter>
